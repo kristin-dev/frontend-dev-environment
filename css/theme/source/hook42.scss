@@ -1,0 +1,101 @@
+/**
+ * Hook42 - based on Sky theme for reveal.js.
+ *
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,500,700,400italic,500italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+
+// Hook42 fonts
+$lightblue: #6880b0;
+$darkblue: #303e5b;
+$orange: #d86543;
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Open Sans', sans-serif;
+$mainColor: $darkblue;
+$headingFont: 'Quicksand', sans-serif;
+$headingColor: $lightblue;
+$headingLetterSpacing: -0.08em;
+$headingTextShadow: darken( $orange, 20% );
+$backgroundColor: #fefefe;
+$linkColor: $lightblue;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: lighten( $lightblue, 20%);
+
+$heading1Size: 2.25em;
+$heading2Size: 1.75em;
+$heading3Size: 1.25em;
+$heading4Size: 1.00em;
+
+// Fix links so they are not cut off
+.reveal a {
+	line-height: 1.3em;
+}
+
+// Background generator
+@mixin bodyBackground() {
+	@include radial-gradient( #ddd, #fff );
+}
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Change selectors after template.
+.reveal a {
+	color: $orange;
+	&:hover {
+		color: darken( $orange, 20% );
+	}
+}
+
+.reveal section img {
+	border: none;
+	box-shadow: none;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+	letter-spacing: -0.05em;
+}
+
+.reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+	text-transform: none;
+}
+
+.reveal ul.ul__centered {
+	padding: 0 20%;
+}
+
+.reveal {
+	.text__dark {
+		color: $darkblue;
+	}
+	.text__light {
+		color: $lightblue;
+	}
+	.text__small {
+		font-size: 80%;
+	}
+	.text__large {
+		font-size: 120%;
+	}
+	.text__bold {
+		font-weight: 700;
+	}
+	.image__small {
+		max-width: 500px;
+	}
+}

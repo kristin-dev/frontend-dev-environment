@@ -1,0 +1,29 @@
+{
+  "name": "y",
+  "version": "3.4.1",
+  "main": "y",
+  "homepage": "y",
+  "license": "y",
+  "description": "y",
+  "authors": [
+    "y"
+  ],
+  "dependencies": {
+    "headjs": "~1.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hakimel/reveal.js.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "y"
+  ],
+  "private": true
+}

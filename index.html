@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<!-- Hi there, nice to see you. So you want to know how this works? Go find out at:
+https://github.com/hakimel/reveal.js -->
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Setting up a frontend development environment for Drupal 8</title>
+
+	<meta name="description" content="Presentation for Baltimore DrupalCon Drupal Conference 2017 on Frontend Environment in Drupal 8">
+	<meta name="author" content="Kristin Bradham">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/hook42.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<!-- Switch-->
+<div style="display: block; position: absolute; bottom: 10px; left: 20px; z-index:999999;">
+    <button onclick="setPlaySpeed()" type="button">Speed up video</button>
+    <button onclick="setPlaySpeedSlow()" type="button">Slow down video</button>
+</div>
+
+<div style="display: block; position: absolute; bottom: 20px; left: 0; z-index:999999; padding: 20px;">
+	<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Hook42-Logo-Web-Small.png">
+</div>
+
+<div class="reveal">
+
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+		<section>
+			<h1 class="text__dark text__bold">Make a View with K2!</h1>
+			<h3>Tips and tricks for making views in Drupal 8</h3>
+			<p><a href="https://kristin-dev.github.io/view-with-k2-presentation/index.html">https://kristin-dev.github.io/view-with-k2-presentation/index.html</a></p>
+		</section>
+
+		<section>
+			<h1>Hook 42</h1>
+			<p><a href="http://www.hook42.com">hook42.com</a> & <a href="https://twitter.com/hook42inc">@hook42inc</a></p>
+			<ul class="ul__centered text__small">
+				<li>SEO, Multilingual, Migrations</li>
+				<li>Complex Enterprise Drupal projects</li>
+				<li>We like Douglas Adams</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Me - K2</h1>
+			<p><a href="http://www.hook42.com/team/kristin-bradham">Kristin Bradham</a> & <a href="https://twitter.com/K2Hook42">@K2Hook42</a></p>
+			<ul class="ul__centered text__small">
+				<li>Site Builder / Front End Developer</li>
+				<li>Been doing web stuff forever (not telling anymore how long)</li>
+				<li>Drupal for (almost) 5 years</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>You?</h1>
+			<ul class="ul__centered ">
+				<li class="fragment">Developer?</li>
+				<li class="fragment">Site Builder?</li>
+				<li class="fragment">New to Drupal?</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>What we're going to do</h2>
+			<ul class="ul__centered text__small">
+				<li class="fragment">What's new in D8</li>
+				<li class="fragment">Get the major concepts solid</li>
+				<li class="fragment">Make some views</li>
+				<li class="fragment">Advanced Features</li>
+				<li class="fragment">Tips and Tricks</li>
+			</ul>
+		</section>
+
+		<section>
+			<section>
+				<h2>New in Drupal 8</h2>
+			</section>
+
+			<section>
+				<h2>Entities</h2>
+				<ul>
+					<li>Many more things are entities</li>
+					<li>Taxonomy terms are entities</li>
+					<li>More things work the same way as content in D7</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Blocks</h2>
+				<ul>
+					<li>Blocks are more powerful</li>
+					<li>Much more likely to be used in D8</li>
+					<li><a href="http://www.hook42.com/blog/block-improvements-drupal-8">Block Improvements in Drupal 8</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Views Log Entries</h2>
+				<ul>
+					<li>Watchdog log entries</li>
+					<li>For things like broken links</li>
+					<li>Create a view of log entries</li>
+				</ul>
+				<p class="text__small">Note: Have to have database logging module enabled (often gets turned off in production, this deletes the view!)</p>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Views Settings</h2>
+				<p>Let's setup Views for success.</p>
+			</section>
+
+			<section>
+				<h2>Setup tips for debugging</h2>
+				<ul>
+					<li>Go to Views Settings</li>
+					<li>Turn on Show SQL query</li>
+					<li>Turn on Show performance Statistics</li>
+				</ul>
+			</section>
+
+			<section>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Settings.png">
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h3>Most of us have made a basic view</h3>
+				<p>Show [view_type (entity)] of type [types_of_this_entity] tagged with: [core_tags] sorted by: [views_sort]</p>
+				<p class="text__small fragment">We have a deadline... let's do this quick!</p>
+			</section>
+
+			<section>
+				<p>Screenshot of basic view making</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Types.png">
+			</section>
+
+			<section>
+				<p>Screenshot of basic view</p>
+				<img class="image__small" src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Basic-small.png">
+			</section>
+		</section>
+
+		<section>
+			<h2>But what are we really building and why?</h2>
+			<p>Lists of Data, displayed in different ways.</p>
+			<p>Things get complicated really fast.</p>
+		</section>
+
+		<section>
+			<h2>View Types</h2>
+			<ul>
+				<li class="fragment">View types are not just content, they can be any entity, and a few non-entity extras</li>
+				<li class="fragment">Make sure you choose the right view type, so that your relationships work later on</li>
+				<li class="fragment">Contrib modules can add additional view types</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Filters</h2>
+			<ul>
+				<li class="fragment">This is the large set of data.</li>
+				<li class="fragment">Start by getting this correct.</li>
+				<li class="fragment">Then you can get more sophisticated with display, sorting, contextual filters and relationships.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Sorts</h2>
+			<p>The order we want to see things in. This is pretty straight forward, but there's more here...</p>
+		</section>
+
+		<section>
+			<section>
+				<h2>Sorts and Exposed Filters</h2>
+				<p>This is where <em>sorts</em> get powerful. We can set up complex sorts that the user can manipulate.</p>
+			</section>
+
+			<section>
+				<h2>Adding an exposed filter</h2>
+				<ul>
+					<li>Create View</li>
+					<li>Add Filters</li>
+					<li>Select "Expose to visitors"</li>
+				</ul>
+			</section>
+
+			<section>
+				<p class="text_small">Basic view with exposed sorts (filters)</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-View2.png">
+			</section>
+
+			<section>
+				<p class="text_small">Change the view filter names</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Filter-Title.png">
+			</section>
+
+			<section>
+				<p class="text_small">Example of the view with Filters</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Example.png">
+			</section>
+
+			<section>
+				<p class="text_small">Advanced Options for Views - Exposed Forms</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Advanced.png">
+			</section>
+
+			<section>
+				<p class="text_small">Advanced Options for Views - Exposed Forms Options</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Advanced-2.png">
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Adding tabs to views</h2>
+			</section>
+			<section>
+				<!-- Switch -->
+				<video controls autoplay>
+                    <source src="videos/Views-Tabs.mov">
+                    Your browser does not support HTML5 video.
+                </video>
+				<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/T14oGJS-mSg" frameborder="0" allowfullscreen></iframe>-->
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Contextual Filters</h2>
+				<p>Filters from somewhere else (not on this content).</p>
+				<p>They are arguments (they used to be called this).</p>
+				<p>Where regular filters are a broad stroke, Contextual Filters are details.</p>
+			</section>
+
+			<section>
+				<p>Screenshot of Contextual Filters</p>
+				<img class="image__small" src="https://kristin-dev.github.io/view-with-k2-presentation/images/Contextual-Filter.png">
+			</section>
+
+			<section>
+				<h3>Basic Contextual Filter Options:</h3>
+				<ol class="text__small">
+					<li>What the filter should do if there isn't a value in the URL</li>
+					<li>What the filter should do if there is a value, (and therefore include any default values from the first section)</li>
+					<li>Some other options that are independent of how the value gets set</li>
+				</ol>
+			</section>
+
+			<section>
+				<h3>Some Options Explained:</h3>
+				<p>Note: If you have URL aliases, you won't be able to see these in the browser, but the arguments are still there.</p>
+				<ul class="text__small">
+					<li><span class="text__bold">Content ID from URL:</span> 333 from '/node/333'</li>
+					<li><span class="text__bold">Taxonomy Term ID:</span> 444 from '/taxonomy/term/444'</li>
+					<li><span class="text__bold">User ID from logged in user:</span> 555 from '/user/555' (note: anonymous is 0)</li>
+					<li><span class="text__bold">User ID from route context:</span> User ID from D8 Symphony, can also look at author ID</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>More Options Explained:</h3>
+				<ul>
+					<li><span class="text__bold text__small">Raw value from the URL:</span> each slash is an argument<br>
+						So: argument '2' would be 'structure' from '/admin/structure/types' </li>
+					<li><span class="text__bold text__small">Query parameters:</span> each query is an argument<br>
+						So: argument 'harry' would be '777' from /admin/structure/types/?harry=777&sally=888</li>
+					<li><span class="text__bold text__small">Fixed:</span> any 'hardcoded' value (not flexible, I just want to say the value right here)</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Relationships</h2>
+				<p>Links two entities together</p>
+				<p class="text__small fragment">If there is an entity reference (this includes taxonomy terms) there can be a relationship.</p>
+				<p class="text__small fragment">Without the relationship ALL the view can display is the ID of the entity that is referenced by the Entity ID.</p>
+			</section>
+
+			<section>
+				<p>Diagram of Relationships</p>
+				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Drawing.svg">
+			</section>
+
+			<section>
+				<h3>One to many, many to one</h3>
+				<p class="fragment text__small">MAKE SURE YOU GO THE RIGHT WAY <br>or you’ll take a performance hit.</p>
+				<p class="fragment text__small"><span class="text__bold">Content referenced from field_job_company</span> <br>this is what you want.</p>
+				<p class="fragment text__small">Content using field_job_company <br> this is the reverse relationship.</p>
+			</section>
+		</section>
+
+		<section>
+			<h1>Stretch</h1>
+			<p>Please stand up</p>
+			<p class="fragment">and chat with your neighbor</p>
+			<p class="fragment">ask them where they grew up.</p>
+		</section>
+
+		<section>
+			<section>
+				<h2>Let's Make Some Views!</h2>
+				<p>Examples of contextual filters and relationships</p>
+			</section>
+
+			<section>
+				<p class="text__small">A view with a contextual filter</p>
+				<!-- Switch -->
+				<video controls autoplay>
+                    <source src="videos/Views-Contextual-Filter.mov">
+                    Your browser does not support HTML5 video.
+                </video>
+				<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/7tf-ARClz6Q" frameborder="0" allowfullscreen></iframe>-->
+			</section>
+		</section>
+
+		<section>
+			<p class="text__small">Adding a relationship</p>
+
+			<!-- Switch -->
+			<video controls autoplay>
+                <source src="videos/Views-Relationship.mov">
+                Your browser does not support HTML5 video.
+            </video>
+
+			<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/h34m-ZnJ6xs" frameborder="0" allowfullscreen></iframe>-->
+		</section>
+
+		<section>
+			<p class="text__small">Wrong way to do contextual filters</p>
+			<!-- Switch -->
+			<video controls autoplay>
+                <source src="videos/Views-Wrong-Way.mov">
+                Your browser does not support HTML5 video.
+            </video>
+
+			<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/stI9iEwmyvI" frameborder="0" allowfullscreen></iframe>-->
+		</section>
+
+		<section>
+			<section>
+				<h2>Advanced Features</h2>
+			</section>
+
+			<section>
+				<h3>Descriptions of Advanced Features</h3>
+				<ul class="text__small ul__centered">
+					<li><span class="text__bold">Machine name:</span> Add to target with code (a default will be added).</li>
+					<li><span class="text__bold">Administrative comment:</span> Just add a note.</li>
+					<li><span class="text__bold">Use Ajax:</span> See next slide.</li>
+					<li><span class="text__bold">Hide attachments in summaries:</span> relates to attachment view type (kind of a corner case).</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Advanced Features - AJAX</h3>
+				<ul class="text__small ul__centered">
+					<li><span class="text__bold">Use Ajax:</span> YES! </li>
+					<li>Do this if you have exposed filters, or dynamic views.</li>
+					<li>Options such as paging, table sorting and exposed filters will not need a page refresh!</li>
+					<li>Use this unless it breaks things (more than one view on a page may break the AJAX).</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>More Descriptions of Advanced Features</h3>
+				<ul  class="text__small ul__centered">
+					<li><span class="text__bold">Use Aggregation & Query Settings:</span> change the fundamentals of views and how SQL queries
+						are generated. Use if you have complex SQL problem.  </li>
+					<li><span class="text__bold">Administrative comment:</span> just add a note</li>
+					<li><span class="text__bold">Caching:</span> see next slide</li>
+					<li><span class="text__bold">CSS class:</span> Add a class to the view wrapper.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Advanced Features - Caching</h3>
+				<ul  class="text__small ul__centered">
+					<li><span class="text__bold">Caching:</span> YES!</li>
+					<li><span class="text__bold">Time based:</span> Wait for some period of time, then rerun query. You might not see updates
+						right away. (This is the old way from D7 and before - legacy option!)</li>
+					<li><span class="text__bold">Tag based:</span> Default and D8 way! D8 puts tags everywhere that let keep track of what is
+						related to what. When one tag changes, D8 keeps track of other changes that also might
+						need to be made. </li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Tips and Tricks</h2>
+			</section>
+
+			<section>
+				<p>Tips and Tricks 1</p>
+				<h2>Skip the UI and use code</h2>
+				<p>You don't need to use the GUI, you can do all of these things with a custom module.</p>
+			</section>
+
+			<section>
+				<p>Tips and Tricks 2</p>
+				<h2>Clone, clone, clone</h2>
+				<p>Much like saving, making a clone will let you see what you did before, and return to that view if necessary.</p>
+			</section>
+
+
+			<section>
+
+				<p>Tips and Tricks 3</p>
+				<h2>Use Existing Views provided in Core</h2>
+				<p>For example: Enable Archive View</p>
+				<p>This is good place to practice cloning. You don't want to lose the original, but you can reuse it in your site!</p>
+
+				<p>The idea for this slide came from: <a href="https://www.webwash.net/build-a-blog-in-drupal-8-using-views/">https://www.webwash.net/build-a-blog-in-drupal-8-using-views/</a>
+				</p>
+			</section>
+
+			<section>
+				<p>Tips and Tricks 4</p>
+				<h2>Use Taxonomy Terms to expand content quickly</h2>
+			</section>
+
+			<section>
+				<p>Tips and Tricks 5</p>
+				<h2>Use Different View Modes to make the same view look different quickly</h2>
+			</section>
+
+			<section>
+				<p>Tips and Tricks 6</p>
+				<h2>Use Additional Modules</h2>
+				<ul class="ul__centered text__small">
+					<li>Make a slideshow (slider) view: <a href="https://www.drupal.org/project/views_slideshow">
+						Views Slideshow</a></li>
+					<li>Mapping content: <a href="https://www.drupal.org/project/geolocation">Geolocation field</a>
+						and <a href="https://www.drupal.org/node/2791593">Drupal 8: Create a view of locations on a
+							CommonMap / Advanced settings</a></li>
+					<li>Get rid of the pager and make an Infinite Scroll: <a
+							href="https://www.drupal.org/project/views_infinite_scroll">Views Infinite Scroll</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<p>Tips and Tricks 8</p>
+				<h2>Be very careful deleting fields</h2>
+				<p>When a field is deleted, it can remove the entire view associated with the field.</p>
+				<p>Danger!</p>
+			</section>
+
+
+		</section>
+
+		<section>
+			<h2>Other Things to Consider</h2>
+			<ul>
+				<li>Name things well - so you can find them later</li>
+				<li>Do you really need a view for this?</li>
+				<li>Performance</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Naming Matters</h2>
+			<ul>
+				<li>Naming a ton of views</li>
+				<li class="fragment">Entity > Descriptor > Modifier</li>
+				<li class="fragment">Biggest to smallest</li>
+				<li class="fragment">Add Tags</li>
+				<li class="fragment">Either all in one, or one for all</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>So long and thanks for all the fish!</h2>
+			<p>Questions? <a href="">Answers@hook42.com</a></p>
+		</section>
+
+	</div>
+
+</div>
+
+<script>
+    var vid = document.querySelector("video");
+
+    function setPlaySpeed() {
+        vid.playbackRate = 5;
+    }
+    function setPlaySpeedSlow() {
+        vid.playbackRate = 1;
+    }
+</script>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true },
+            { src: 'plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
