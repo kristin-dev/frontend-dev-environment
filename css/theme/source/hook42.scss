@@ -98,4 +98,24 @@ $heading4Size: 1.00em;
 	.image__small {
 		max-width: 500px;
 	}
+	.image__small {
+		max-width: 500px;
+	}
+	.seventy-percent {
+		max-width: 70%;
+		margin: 1em auto;
+	}
+	pre code {
+		padding: 1em;
+	}
+	ul {
+		display: block;
+		margin-bottom: 1em;
+	}
+}
+
+html.intro body {
+	background:url("images/background2.png");
+	background-position:center;
+	background-size: 100%;
 }

@@ -39,16 +39,21 @@ https://github.com/hakimel/reveal.js -->
 <body>
 
 <div style="display: block; position: absolute; bottom: 20px; left: 0; z-index:999999; padding: 20px;">
-	<img src="https://kristin-dev.github.io/frontend-dev-environment/images/Hook42-Logo-Web-Small.png">
+	<!--<img src="https://kristin-dev.github.io/frontend-dev-environment/images/Hook42-Logo-Web-Small.png">-->
+	<img src="images/Hook42-Logo-Web-Small.png">
 </div>
 
 <div class="reveal">
 
 	<!-- Any section element inside of this container is displayed as a slide -->
 	<div class="slides">
+		<section data-background-image="images/background2.png" data-state=“intro”>
+			<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+			<p style="font-family: 'Merriweather'; color: #e0ca7d; font-size: .8em">Setting up a Frontend <br> Development Environment for Drupal 8</p>
+			<p style="font-family: 'Merriweather'; color: #fff; font-size: .7em">Kristin Bradham - kbradham@hook42.com</p>
+		</section>
 		<section>
-			<h1 class="text__dark text__bold">Setting up a Development Environment for Drupal 8</h1>
-			<h3>Slides available at:</h3>
+			<h2>Slides available at:</h2>
 			<p><a href="https://kristin-dev.github.io/frontend-dev-environment/index.html">https://kristin-dev.github.io/frontend-dev-environment/index.html</a></p>
 		</section>
 
@@ -79,7 +84,7 @@ https://github.com/hakimel/reveal.js -->
 			</section>
 
 			<section>
-				<h3>“The frontend has more command line tools now than the backend does.”</h3>
+				<h3 class="text__dark">“The frontend has more command line tools now than the backend does.”</h3>
 				<h4>- Joseph Flatt</h4>
 			</section>
 
@@ -199,7 +204,8 @@ $ chmod -Rf 775 [site-path]/sites/default
 			<section>
 				<h3>Drupal Admin permissions </h3>
 				<p>(admin/people/permissions and /user)</p>
-				<p>Make sure you have admin access - and you are NOT user 1</p>
+				<p>Make sure you have admin access <br>
+					and you are NOT user 1</p>
 
 			</section>
 
@@ -461,7 +467,7 @@ $ npm install</code></pre>
 				<ul>
 					<li>Shrinkwrap</li>
 					<li>Bower</li>
-					<li>You can check in everything…</li>
+					<li>You can check in everything to git…</li>
 				</ul>
 			</section>
 		</section>
@@ -508,10 +514,30 @@ gulp.watch('./sass/**/*.scss', ['sass']);
 			</section>
 
 			<section>
-				<h3>Example of grunt install</h3>
-				<pre><code>$ npm install grunt --save-dev
+				<h3>Example of grunt file</h3>
+				<pre><code>module.exports = function(grunt) {
 
-$ npm install grunt-contrib-jshint --save-dev
+  grunt.initConfig({
+    jshint: {
+      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      options: {
+        globals: {
+          jQuery: true
+        }
+      }
+    },
+    watch: {
+      files: ['<%= jshint.files %>'],
+      tasks: ['jshint']
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', ['jshint']);
+
+};
 				</code></pre>
 			</section>
 
@@ -586,7 +612,8 @@ $ npm install grunt-contrib-jshint --save-dev
 			</section>
 			<section>
 				<h3>Classy File Structure</h3>
-				<img src="https://kristin-dev.github.io/frontend-dev-environment/images/classy.png">
+				<!--<img src="https://kristin-dev.github.io/frontend-dev-environment/images/classy.png">-->
+				<img src="images/classy.png">
 			</section>
 
 			<section>
@@ -598,7 +625,8 @@ $ npm install grunt-contrib-jshint --save-dev
 			</section>
 			<section>
 				<h3>Zen File Structure</h3>
-				<img src="https://kristin-dev.github.io/frontend-dev-environment/images/zen.png">
+				<!--<img src="https://kristin-dev.github.io/frontend-dev-environment/images/zen.png">-->
+				<img src="images/zen.png">
 			</section>
 		</section>
 
@@ -664,7 +692,12 @@ $ npm install grunt-contrib-jshint --save-dev
 			</section>
 			<section>
 				<h2>Atomic Design Principles</h2>
-				<img src="https://kristin-dev.github.io/frontend-dev-environment/images/instagram-atomic.png">
+				<!--<img src="https://kristin-dev.github.io/frontend-dev-environment/images/instagram-atomic.png">-->
+				<img src="images/instagram-atomic.png">
+			</section>
+			<section>
+				<h2>Pattern Lab Example</h2>
+				<img src="images/pattern-lab.png">
 			</section>
 		</section>
 
@@ -681,7 +714,7 @@ $ npm install grunt-contrib-jshint --save-dev
 		</section>
 
 		<section>
-			<h3>“ It really doesn’t matter which structure, just tell me in the readme.md and stick with it (so I can find things).”</h3>
+			<h3 class="text__dark">“ It really doesn’t matter which structure, just tell me in the <span class="text__bold">readme.md</span> and stick with it (so I can find things).”</h3>
 			<h4>- Me (K2), Pragmatic frontend developer</h4>
 		</section>
 
@@ -703,9 +736,8 @@ $ npm install grunt-contrib-jshint --save-dev
 
 		<section>
 			<section class="text__small">
-				<h2>Join Us for Contribution Sprints</h2>
-				<p class="text__bold">#drupalsprints</p>
-				<p>Friday, April 28, 2017</p>
+				<h3>Join Us for Contribution Sprints</h3>
+				<p><span class="text__bold">#drupalsprints</span> - Friday, April 28, 2017</p>
 				<ul class="ul__centered">
 					<li class="text__bold">First-Time Sprinter Workshop</li>
 					<li>9:00am-12:00pm</li>
@@ -729,7 +761,7 @@ $ npm install grunt-contrib-jshint --save-dev
 				<h2>THANK YOU! <br>WHAT DID YOU THINK?</h2>
 			</section>
 			<section>
-				<p>Locate this session at the DrupalCon Baltimore website:</p>
+				<p>Locate this session at the <br>DrupalCon Baltimore website:</p>
 				<a href="https://events.drupal.org/baltimore2017/sessions/setting-front-end-development-environment-drupal-8">https://events.drupal.org/baltimore2017/sessions<br>/setting-front-end-development-environment-drupal-8</a>
 			</section>
 			<section>

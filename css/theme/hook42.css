@@ -346,3 +346,9 @@ body {
   display: block;
   margin-bottom: 1em;
 }
+
+html.intro body {
+  background-position: center;
+  background-size: 100%;
+  border: 1px solid pink;
+}
