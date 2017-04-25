@@ -37,14 +37,9 @@ https://github.com/hakimel/reveal.js -->
 </head>
 
 <body>
-<!-- Switch-->
-<div style="display: block; position: absolute; bottom: 10px; left: 20px; z-index:999999;">
-    <button onclick="setPlaySpeed()" type="button">Speed up video</button>
-    <button onclick="setPlaySpeedSlow()" type="button">Slow down video</button>
-</div>
 
 <div style="display: block; position: absolute; bottom: 20px; left: 0; z-index:999999; padding: 20px;">
-	<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Hook42-Logo-Web-Small.png">
+	<img src="https://kristin-dev.github.io/frontend-dev-environment/images/Hook42-Logo-Web-Small.png">
 </div>
 
 <div class="reveal">
@@ -52,9 +47,9 @@ https://github.com/hakimel/reveal.js -->
 	<!-- Any section element inside of this container is displayed as a slide -->
 	<div class="slides">
 		<section>
-			<h1 class="text__dark text__bold">Make a View with K2!</h1>
-			<h3>Tips and tricks for making views in Drupal 8</h3>
-			<p><a href="https://kristin-dev.github.io/view-with-k2-presentation/index.html">https://kristin-dev.github.io/view-with-k2-presentation/index.html</a></p>
+			<h1 class="text__dark text__bold">Setting up a Development Environment for Drupal 8</h1>
+			<h3>Slides available at:</h3>
+			<p><a href="https://kristin-dev.github.io/frontend-dev-environment/index.html">https://kristin-dev.github.io/frontend-dev-environment/index.html</a></p>
 		</section>
 
 		<section>
@@ -68,455 +63,728 @@ https://github.com/hakimel/reveal.js -->
 		</section>
 
 		<section>
-			<h1>Me - K2</h1>
+			<h1>About Me - K2</h1>
 			<p><a href="http://www.hook42.com/team/kristin-bradham">Kristin Bradham</a> & <a href="https://twitter.com/K2Hook42">@K2Hook42</a></p>
 			<ul class="ul__centered text__small">
 				<li>Site Builder / Front End Developer</li>
 				<li>Been doing web stuff forever (not telling anymore how long)</li>
 				<li>Drupal for (almost) 5 years</li>
-			</ul>
-		</section>
-
-		<section>
-			<h1>You?</h1>
-			<ul class="ul__centered ">
-				<li class="fragment">Developer?</li>
-				<li class="fragment">Site Builder?</li>
-				<li class="fragment">New to Drupal?</li>
-			</ul>
-		</section>
-
-		<section>
-			<h2>What we're going to do</h2>
-			<ul class="ul__centered text__small">
-				<li class="fragment">What's new in D8</li>
-				<li class="fragment">Get the major concepts solid</li>
-				<li class="fragment">Make some views</li>
-				<li class="fragment">Advanced Features</li>
-				<li class="fragment">Tips and Tricks</li>
+				<li>3 kids and 2 dogs</li>
 			</ul>
 		</section>
 
 		<section>
 			<section>
-				<h2>New in Drupal 8</h2>
+				<h2>Why this subject?</h2>
 			</section>
 
 			<section>
-				<h2>Entities</h2>
-				<ul>
-					<li>Many more things are entities</li>
-					<li>Taxonomy terms are entities</li>
-					<li>More things work the same way as content in D7</li>
-				</ul>
+				<h3>“The frontend has more command line tools now than the backend does.”</h3>
+				<h4>- Joseph Flatt</h4>
 			</section>
 
 			<section>
-				<h2>Blocks</h2>
+				<h2>We need a Checklist!</h2>
 				<ul>
-					<li>Blocks are more powerful</li>
-					<li>Much more likely to be used in D8</li>
-					<li><a href="http://www.hook42.com/blog/block-improvements-drupal-8">Block Improvements in Drupal 8</a></li>
+					<li>General Environment Setup</li>
+					<li>Drupal 8 Setup</li>
+					<li>Frontend Dev Ops</li>
+					<li>Theme Structures</li>
 				</ul>
 			</section>
 
+		</section>
+
+		<section>
 			<section>
-				<h2>Views Log Entries</h2>
-				<ul>
-					<li>Watchdog log entries</li>
-					<li>For things like broken links</li>
-					<li>Create a view of log entries</li>
+				<h1>General Environment Setup</h1>
+			</section>
+
+			<section>
+				<h2>Checklist</h2>
+				<ul class="ul__centered">
+					<li>Editor</li><li>
+					Hosting</li><li>
+					MAMP / WAMP</li><li>
+					Install Drupal</li><li>
+					Dev Modules</li><li>
+					Permissions</li><li>
+					Bash shell</li><li>
+					Git</li>
 				</ul>
-				<p class="text__small">Note: Have to have database logging module enabled (often gets turned off in production, this deletes the view!)</p>
 			</section>
 		</section>
 
 		<section>
 			<section>
-				<h2>Views Settings</h2>
-				<p>Let's setup Views for success.</p>
-			</section>
-
-			<section>
-				<h2>Setup tips for debugging</h2>
-				<ul>
-					<li>Go to Views Settings</li>
-					<li>Turn on Show SQL query</li>
-					<li>Turn on Show performance Statistics</li>
+				<h2>Editors / IDE</h2>
+				<ul class="ul__centered">
+					<li>PhpStorm</li>
+					<li>Sublime Text 2</li><li>
+						Coda (OSX - easy)</li><li>
+						Codekit (OSX - easy)</li><li>
+						NetBeans (for php)</li><li>
+						Eclipse PDT (for php)</li><li>
+						A billion others
+					</li>
 				</ul>
 			</section>
 
 			<section>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Settings.png">
+				<h2>Setup the Editor</h2>
+				<ul class="ul__centered">
+					<li>Drupal Coding Standards</li><li>
+						Format: SCSS, CSS, .twig and .yml files
+					</li>
+				</ul>
+				<p class="text__light seventy-percent">TIP! .yml files require 2 (or multiple of 2) spaces to work!!!! Not a tab! Make sure your editor is set for this.</p>
 			</section>
+
 		</section>
 
 		<section>
 			<section>
-				<h3>Most of us have made a basic view</h3>
-				<p>Show [view_type (entity)] of type [types_of_this_entity] tagged with: [core_tags] sorted by: [views_sort]</p>
-				<p class="text__small fragment">We have a deadline... let's do this quick!</p>
+				<h2>Hosting</h2>
 			</section>
-
 			<section>
-				<p>Screenshot of basic view making</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Types.png">
+				<h3>Things to Gather</h3>
+				<p>Find Your SSH</p>
+				<pre><code>ls -al ~/.ssh</code></pre>
+				<p>Generate SSH Keys</p>
 			</section>
-
 			<section>
-				<p>Screenshot of basic view</p>
-				<img class="image__small" src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Basic-small.png">
+				<h3>Hosting Specific Tools</h3>
+				<p>Pantheon</p>
+				<p>Kalabox (Don’t need MAMP / WAMP)</p>
+				<p>Acquia Dev Desktop (Don’t need MAMP / WAMP)</p>
 			</section>
 		</section>
 
 		<section>
-			<h2>But what are we really building and why?</h2>
-			<p>Lists of Data, displayed in different ways.</p>
-			<p>Things get complicated really fast.</p>
+			<h2>MAMP / WAMP</h2>
+			<p>Change php.ini for Drupal 8 (especially for Twig debugging)</p>
+			<pre><code>memory_limit = 1024M</code></pre>
 		</section>
 
 		<section>
-			<h2>View Types</h2>
+			<h2>Modules You Might Also Want for Development</h2>
+			<ul class="ul__centered">
+				<li>devel</li><li>
+					devel kint</li><li>
+					stage_file_proxy</li><li>
+					styleguide</li><li>
+					admin_toolbar</li><li>
+					etc…
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<section>
+				<h2>Permissions</h2>
+			</section>
+			<section>
+				<h3>File permissions (chmod)</h3>
+				<pre><code>
+$ chmod -R u+w [site-path]/sites
+
+$ chmod -Rf 775 [site-path]/sites/default
+				</code></pre>
+			</section>
+			<section>
+				<h3>Pro Tip: Make changing these file permissions a bash alias!!
+				</h3>
+				<pre><code>$ alias cdp='chmod -R u+w [site-path]/sites'</code></pre>
+			</section>
+			<section>
+				<h3>Drupal Admin permissions </h3>
+				<p>(admin/people/permissions and /user)</p>
+				<p>Make sure you have admin access - and you are NOT user 1</p>
+
+			</section>
+
+
+		</section>
+
+		<section>
+			<h2>.bashrc
+			</h2>
+			<p>Aliases are your friend!</p>
+			<pre><code>
+alias cdhtdocs='cd /Applications/MAMP/htdocs;'
+
+alias hdd='drush @pantheon.hook42d8.peer-review sql-dump > ~/Downloads/h42d8--peer-review.sql;'
+
+alias gitperms='cd /Applications/MAMP/htdocs/client/sites/all/modules; git config core.fileMode false; chmod -R 775 custom;'
+
+#Search Git
+searchGit() {
+git branch -a | grep $1
+}
+alias sgit=searchGit;
+			</code></pre>
+		</section>
+
+		<section>
+			<h2>Git</h2>
 			<ul>
-				<li class="fragment">View types are not just content, they can be any entity, and a few non-entity extras</li>
-				<li class="fragment">Make sure you choose the right view type, so that your relationships work later on</li>
-				<li class="fragment">Contrib modules can add additional view types</li>
+				<li>Install globally</li>
+				<li>Create github account (if you like)</li>
+				<li>Smartgit or other GUI?</li>
+				<li>.gitignore file
+					<ul>
+						</li>For things like node_modules,
+						sass-cache, etc.</li>
+					</ul>
+				</li>
 			</ul>
 		</section>
 
 		<section>
-			<h2>Filters</h2>
+			<section>
+				<h1>Drupal 8 Setup</h1>
+			</section>
+			<section>
+				<h2>Checklist</h2>
+				<ul class="ul__centered">
+					<li>settings.php</li><li>
+						local.services.yml & debugging twig</li><li>
+						yml files</li><li>
+						drush</li><li>
+						drupal console
+					</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<h2>settings.php</h2>
 			<ul>
-				<li class="fragment">This is the large set of data.</li>
-				<li class="fragment">Start by getting this correct.</li>
-				<li class="fragment">Then you can get more sophisticated with display, sorting, contextual filters and relationships.</li>
+				<li>settings.php
+					<ul><li>Generated when you setup Drupal</li>
+						<li>Everyone shares</li>
+					</ul>
+				</li>
+			</ul>
+			<ul>
+				<li>settings.local.php
+					<ul>
+						<li>Turn “on” in settings.php, then you can put custom settings here</li>
+						<li>Local database information</li>
+						<li>Disable css and js on your local</li>
+					</ul>
+				</li>
 			</ul>
 		</section>
 
 		<section>
-			<h2>Sorts</h2>
-			<p>The order we want to see things in. This is pretty straight forward, but there's more here...</p>
-		</section>
-
-		<section>
 			<section>
-				<h2>Sorts and Exposed Filters</h2>
-				<p>This is where <em>sorts</em> get powerful. We can set up complex sorts that the user can manipulate.</p>
-			</section>
-
-			<section>
-				<h2>Adding an exposed filter</h2>
+				<h2>Debugging Twig</h2>
 				<ul>
-					<li>Create View</li>
-					<li>Add Filters</li>
-					<li>Select "Expose to visitors"</li>
+					<li>services.yml - make a  local.services.yml</li>
+					<li>TIP: find/grep
+						<pre><code>
+twig.debug;
+
+debug: true
+					</code></pre>
+					</li>
 				</ul>
 			</section>
-
 			<section>
-				<p class="text_small">Basic view with exposed sorts (filters)</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-View2.png">
-			</section>
+				<h3>In your twig files</h3>
+				<pre><code>
+{{ dump(_context|keys) }}
 
-			<section>
-				<p class="text_small">Change the view filter names</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Filter-Title.png">
-			</section>
-
-			<section>
-				<p class="text_small">Example of the view with Filters</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Example.png">
-			</section>
-
-			<section>
-				<p class="text_small">Advanced Options for Views - Exposed Forms</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Advanced.png">
-			</section>
-
-			<section>
-				<p class="text_small">Advanced Options for Views - Exposed Forms Options</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Exposed-Filters-Advanced-2.png">
+{{ kint(title) }}
+		</code></pre>
 			</section>
 		</section>
 
 		<section>
 			<section>
-				<h2>Adding tabs to views</h2>
-			</section>
-			<section>
-				<!-- Switch -->
-				<video controls autoplay>
-                    <source src="videos/Views-Tabs.mov">
-                    Your browser does not support HTML5 video.
-                </video>
-				<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/T14oGJS-mSg" frameborder="0" allowfullscreen></iframe>-->
-			</section>
-		</section>
-
-		<section>
-			<section>
-				<h2>Contextual Filters</h2>
-				<p>Filters from somewhere else (not on this content).</p>
-				<p>They are arguments (they used to be called this).</p>
-				<p>Where regular filters are a broad stroke, Contextual Filters are details.</p>
-			</section>
-
-			<section>
-				<p>Screenshot of Contextual Filters</p>
-				<img class="image__small" src="https://kristin-dev.github.io/view-with-k2-presentation/images/Contextual-Filter.png">
-			</section>
-
-			<section>
-				<h3>Basic Contextual Filter Options:</h3>
-				<ol class="text__small">
-					<li>What the filter should do if there isn't a value in the URL</li>
-					<li>What the filter should do if there is a value, (and therefore include any default values from the first section)</li>
-					<li>Some other options that are independent of how the value gets set</li>
-				</ol>
-			</section>
-
-			<section>
-				<h3>Some Options Explained:</h3>
-				<p>Note: If you have URL aliases, you won't be able to see these in the browser, but the arguments are still there.</p>
-				<ul class="text__small">
-					<li><span class="text__bold">Content ID from URL:</span> 333 from '/node/333'</li>
-					<li><span class="text__bold">Taxonomy Term ID:</span> 444 from '/taxonomy/term/444'</li>
-					<li><span class="text__bold">User ID from logged in user:</span> 555 from '/user/555' (note: anonymous is 0)</li>
-					<li><span class="text__bold">User ID from route context:</span> User ID from D8 Symphony, can also look at author ID</li>
-				</ul>
-			</section>
-
-			<section>
-				<h3>More Options Explained:</h3>
+				<h3>.yml Files</h3>
 				<ul>
-					<li><span class="text__bold text__small">Raw value from the URL:</span> each slash is an argument<br>
-						So: argument '2' would be 'structure' from '/admin/structure/types' </li>
-					<li><span class="text__bold text__small">Query parameters:</span> each query is an argument<br>
-						So: argument 'harry' would be '777' from /admin/structure/types/?harry=777&sally=888</li>
-					<li><span class="text__bold text__small">Fixed:</span> any 'hardcoded' value (not flexible, I just want to say the value right here)</li>
+					<li>theme.info.yml</li>
+					<ul>
+						<li>Regions</li>
+					</ul>
 				</ul>
-			</section>
-		</section>
-
-		<section>
-			<section>
-				<h2>Relationships</h2>
-				<p>Links two entities together</p>
-				<p class="text__small fragment">If there is an entity reference (this includes taxonomy terms) there can be a relationship.</p>
-				<p class="text__small fragment">Without the relationship ALL the view can display is the ID of the entity that is referenced by the Entity ID.</p>
-			</section>
-
-			<section>
-				<p>Diagram of Relationships</p>
-				<img src="https://kristin-dev.github.io/view-with-k2-presentation/images/Views-Drawing.svg">
-			</section>
-
-			<section>
-				<h3>One to many, many to one</h3>
-				<p class="fragment text__small">MAKE SURE YOU GO THE RIGHT WAY <br>or you’ll take a performance hit.</p>
-				<p class="fragment text__small"><span class="text__bold">Content referenced from field_job_company</span> <br>this is what you want.</p>
-				<p class="fragment text__small">Content using field_job_company <br> this is the reverse relationship.</p>
-			</section>
-		</section>
-
-		<section>
-			<h1>Stretch</h1>
-			<p>Please stand up</p>
-			<p class="fragment">and chat with your neighbor</p>
-			<p class="fragment">ask them where they grew up.</p>
-		</section>
-
-		<section>
-			<section>
-				<h2>Let's Make Some Views!</h2>
-				<p>Examples of contextual filters and relationships</p>
-			</section>
-
-			<section>
-				<p class="text__small">A view with a contextual filter</p>
-				<!-- Switch -->
-				<video controls autoplay>
-                    <source src="videos/Views-Contextual-Filter.mov">
-                    Your browser does not support HTML5 video.
-                </video>
-				<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/7tf-ARClz6Q" frameborder="0" allowfullscreen></iframe>-->
-			</section>
-		</section>
-
-		<section>
-			<p class="text__small">Adding a relationship</p>
-
-			<!-- Switch -->
-			<video controls autoplay>
-                <source src="videos/Views-Relationship.mov">
-                Your browser does not support HTML5 video.
-            </video>
-
-			<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/h34m-ZnJ6xs" frameborder="0" allowfullscreen></iframe>-->
-		</section>
-
-		<section>
-			<p class="text__small">Wrong way to do contextual filters</p>
-			<!-- Switch -->
-			<video controls autoplay>
-                <source src="videos/Views-Wrong-Way.mov">
-                Your browser does not support HTML5 video.
-            </video>
-
-			<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/stI9iEwmyvI" frameborder="0" allowfullscreen></iframe>-->
-		</section>
-
-		<section>
-			<section>
-				<h2>Advanced Features</h2>
-			</section>
-
-			<section>
-				<h3>Descriptions of Advanced Features</h3>
-				<ul class="text__small ul__centered">
-					<li><span class="text__bold">Machine name:</span> Add to target with code (a default will be added).</li>
-					<li><span class="text__bold">Administrative comment:</span> Just add a note.</li>
-					<li><span class="text__bold">Use Ajax:</span> See next slide.</li>
-					<li><span class="text__bold">Hide attachments in summaries:</span> relates to attachment view type (kind of a corner case).</li>
+				<ul>
+					<li>theme.breakpoints.yml
+						<ul><li>There is no GUI for this</li>
+							<li>Let’s Drupal know what breakpoints you’re using (doesn’t set breakpoints in scss)</li>
+							<li>Right now most commonly used for images / picture</li>
+						</ul>
+					</li>
 				</ul>
 			</section>
 
 			<section>
-				<h3>Advanced Features - AJAX</h3>
-				<ul class="text__small ul__centered">
-					<li><span class="text__bold">Use Ajax:</span> YES! </li>
-					<li>Do this if you have exposed filters, or dynamic views.</li>
-					<li>Options such as paging, table sorting and exposed filters will not need a page refresh!</li>
-					<li>Use this unless it breaks things (more than one view on a page may break the AJAX).</li>
-				</ul>
-			</section>
-
-			<section>
-				<h3>More Descriptions of Advanced Features</h3>
-				<ul  class="text__small ul__centered">
-					<li><span class="text__bold">Use Aggregation & Query Settings:</span> change the fundamentals of views and how SQL queries
-						are generated. Use if you have complex SQL problem.  </li>
-					<li><span class="text__bold">Administrative comment:</span> just add a note</li>
-					<li><span class="text__bold">Caching:</span> see next slide</li>
-					<li><span class="text__bold">CSS class:</span> Add a class to the view wrapper.</li>
-				</ul>
-			</section>
-
-			<section>
-				<h3>Advanced Features - Caching</h3>
-				<ul  class="text__small ul__centered">
-					<li><span class="text__bold">Caching:</span> YES!</li>
-					<li><span class="text__bold">Time based:</span> Wait for some period of time, then rerun query. You might not see updates
-						right away. (This is the old way from D7 and before - legacy option!)</li>
-					<li><span class="text__bold">Tag based:</span> Default and D8 way! D8 puts tags everywhere that let keep track of what is
-						related to what. When one tag changes, D8 keeps track of other changes that also might
-						need to be made. </li>
-				</ul>
-			</section>
-		</section>
-
-		<section>
-			<section>
-				<h2>Tips and Tricks</h2>
-			</section>
-
-			<section>
-				<p>Tips and Tricks 1</p>
-				<h2>Skip the UI and use code</h2>
-				<p>You don't need to use the GUI, you can do all of these things with a custom module.</p>
-			</section>
-
-			<section>
-				<p>Tips and Tricks 2</p>
-				<h2>Clone, clone, clone</h2>
-				<p>Much like saving, making a clone will let you see what you did before, and return to that view if necessary.</p>
-			</section>
-
-
-			<section>
-
-				<p>Tips and Tricks 3</p>
-				<h2>Use Existing Views provided in Core</h2>
-				<p>For example: Enable Archive View</p>
-				<p>This is good place to practice cloning. You don't want to lose the original, but you can reuse it in your site!</p>
-
-				<p>The idea for this slide came from: <a href="https://www.webwash.net/build-a-blog-in-drupal-8-using-views/">https://www.webwash.net/build-a-blog-in-drupal-8-using-views/</a>
+				<h3>.yml Files</h3>
+				<p>theme.libraries.yml
+				</p>
+				<p>The new “way”
+				</p>
+				<p>JQuery not automatically loaded anymore
+					</p>load in theme.libraries.yml<p>
 				</p>
 			</section>
 
 			<section>
-				<p>Tips and Tricks 4</p>
-				<h2>Use Taxonomy Terms to expand content quickly</h2>
+				<h3>Example .yml file</h3>
+				<pre><code>
+global:
+ css:
+   theme:
+     css/style.css: {}
+ js:
+   js_min/script.js: {}
+ dependencies:
+   - core/jquery
+   - core/jquery.once
+   - core/drupal
+
+				</code></pre>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Drush</h2>
+				<ul>
+					<li>Drush:
+						<ul><li>Set up with Composer</li>
+							<li>Can be installed locally or globally</li>
+							<li>Using multiple versions of Drush</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Drupal Console</h2>
+				<ul>
+					<li>Drupal Console:
+						<ul>
+							<li>Lots of great features - like create a theme:</li>
+						</ul>
+					</li>
+				</ul>
+				<pre><code>$ drupal generate:theme [options]
+
+$ gt
+</code></pre>
+			</section>
+
+		</section>
+		<section>
+			<section>
+				<h1>Frontend Dev Ops</h1>
+			</section>
+			<section>
+				<h2>Checklist</h2>
+				<ul class="ul__centered">
+					<li>NodeJS</li>
+					<li>npm</li>
+					<li>Gulp</li>
+					<li>Version Control</li>
+					<li>SASS</li>
+					<li>SASS Tools</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<h2>Why a Task Runner?</h2>
+			<ul>
+				<li>SASS requires compiling and "watching"</li>
+				<li>JS community likes “Linting, Concat, Uglify”</li>
+				<li>Live Reload</li>
+				<li>KSS styleguide</li>
+				<li>Regression Testing</li>
+				<li>Etc. Etc. and so forth</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>What is NodeJS?</h2>
+			<p class="fragment">This is a huge framework - not just frontend, whole applications are written in NodeJS.</p>
+			<p class="fragment">For us, we just need to install it so we can install node packages with npm.</p>
+		</section>
+
+		<section>
+			<h2>npm</h2>
+			<p class="fragment">Node Package Manager</p>
+			<p class="fragment">A large repository of online NodeJS projects. We will use these to automate our frontend processes.</p>
+			<p class="fragment">Installed as part of NodeJS.</p>
+
+		</section>
+
+		<section>
+			<h2>npm and Gulp</h2>
+			<ul>
+				<li class="fragment">
+					Gulp is a task runner. It helps us automate tasks like watching SASS, linting files and concatenating files.</li><li class="fragment">
+
+					We can add to our Gulp abilities by installing npm Gulp packages.</li><li class="fragment">
+
+					You can also use npm as your task runner (this is becoming more common).</li><li class="fragment">
+
+					The advantage of Gulp is that it’s easy to read / configure.
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<section>
+				<h3>Install Gulp</h3>
+				<pre><code>npm install --save-dev gulp</code></pre>
+				<h3>This will add Gulp to your package.json. <br>Then simply run:</h3>
+				<pre><code>npm install</code></pre>
+			</section>
+			<section>
+				<h3>All gulp / npm packages work this way!</h3>
+				<pre><code>$ npm install gulp-sass --save-dev
+$ npm install</code></pre>
+
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Version Control</h2>
+				<p class="fragment">You need this so that different developers are using the same versions of npm and gulp tasks PER PROJECT.</p>
+				<p class="fragment">So the same machine might have 2 different versions of NodeJS or plugins - and it uses the right one at the right time.</p>
+			</section>
+			<section>
+				<h3>Some types of version control</h3>
+				<ul>
+					<li>Shrinkwrap</li>
+					<li>Bower</li>
+					<li>You can check in everything…</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>What Gulp Can Do</h2>
+				<ul class="ul__centered">
+					<li>SASS</li>
+					<li>Lint JS - (eslint)</li>
+					<li>Concat</li>
+					<li>Uglify</li>
+					<li>Live Reload</li>
+					<li>Drush</li>
+					<li>Repetitive tasks</li>
+					<li>Browsersync</li>
+					<li>Libraries?</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Example Gulp File</h3>
+				<pre><code>'use strict';
+
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+
+gulp.task('sass', function () {
+return gulp.src('./sass/**/*.scss')
+.pipe(gulp.dest('./css'));
+});
+
+gulp.task('watch', function () {
+gulp.watch('./sass/**/*.scss', ['sass']);
+});
+
+				</code></pre>
 			</section>
 
 			<section>
-				<p>Tips and Tricks 5</p>
-				<h2>Use Different View Modes to make the same view look different quickly</h2>
+				<h3>Grunt</h3>
+				<p>(the old way)</p>
+				<p>Similar to Gulp</p>
+				<p>You might inherit this!</p>
 			</section>
 
 			<section>
-				<p>Tips and Tricks 6</p>
-				<h2>Use Additional Modules</h2>
-				<ul class="ul__centered text__small">
-					<li>Make a slideshow (slider) view: <a href="https://www.drupal.org/project/views_slideshow">
-						Views Slideshow</a></li>
-					<li>Mapping content: <a href="https://www.drupal.org/project/geolocation">Geolocation field</a>
-						and <a href="https://www.drupal.org/node/2791593">Drupal 8: Create a view of locations on a
-							CommonMap / Advanced settings</a></li>
-					<li>Get rid of the pager and make an Infinite Scroll: <a
-							href="https://www.drupal.org/project/views_infinite_scroll">Views Infinite Scroll</a></li>
+				<h3>Example of grunt install</h3>
+				<pre><code>$ npm install grunt --save-dev
+
+$ npm install grunt-contrib-jshint --save-dev
+				</code></pre>
+			</section>
+
+			<section>
+				<h3>Ruby and SASS</h3>
+				<p>(another old way)</p>
+				<p>Install Ruby</p>
+				<p>RVM</p>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>SASS and Less</h2>
+				<h3>CSS Preprocessors</h3>
+			</section>
+			<section>
+				<p class="fragment">Cleaner code with reusable pieces and variables</p>
+				<p class="fragment">Saves you time</p>
+				<p class="fragment">Easier to maintain code with snippets and libraries</p>
+				<p class="fragment">Calculations and logic</p>
+				<p class="fragment">More organized and easy to setup</p>
+			</section>
+			<section>
+				<h3>SASS or Less?</h3>
+				<p class="fragment">SASS</p>
+				<p class="fragment">(Unless Less is your thing...)</p>
+			</section>
+			<section>
+				<h3>SASS Tools</h3>
+				<ul class="ul__centered">
+					<li>Compass</li>
+					<li>Bourbon</li>
+					<li>Susy</li>
+					<li>Breakpoint</li>
+					<li>Modular Scale</li>
+					<li>Typi</li>
+					<li>More and more...</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h1>Theme Structure</h1>
+			</section>
+			<section>
+				<h2>Checklist</h2>
+				<ul class="ul__centered">
+					<li>Twig Files</li>
+					<li>Component File Structure</li>
+					<li>SASS Structures
+						<ul>
+							<li>SMACCS</li>
+							<li>BEM</li>
+							<li>OOCSS</li>
+						</ul>
+					</li>
+					<li>Pattern Lab and Atomic Design</li>
+					<li>JS and decoupled Drupal</li>
+					<li>REST API</li>
+
 				</ul>
 			</section>
 
+		</section>
+
+		<section>
 			<section>
-				<p>Tips and Tricks 8</p>
-				<h2>Be very careful deleting fields</h2>
-				<p>When a field is deleted, it can remove the entire view associated with the field.</p>
-				<p>Danger!</p>
+				<h2>Twig File Structure</h2>
+				<p>Classy setup is nicely organized</p>
+			</section>
+			<section>
+				<h3>Classy File Structure</h3>
+				TODO: add image.
 			</section>
 
-
+			<section>
+				<h3>Component File Structure</h3>
+				<ul><li class="fragment">But sometimes twig files are in components (See Zen for D8)</li>
+				<li class="fragment">This is where things are moving...</li>
+				<li class="fragment">Instead of organizing by file type, organize by component</li>
+					<li class="fragment">CSS, JS, image and twig files are together</li></ul>
+			</section>
+			<section>
+				<h3>Zen File Structure</h3>
+				TODO: add image.
+			</section>
 		</section>
 
 		<section>
-			<h2>Other Things to Consider</h2>
+			<section>
+				<h3>SASS Structures</h3>
+				<p class="fragment">SASS is getting bigger and we’re trying to get organized!</p>
+			</section>
+
+			<section>
+				<h2>Types of SASS Structures</h2>
+				<ul>
+					<li class="fragment">SMACCS<br>
+						<span class="text__small">Organize folders / directories (Generally)</span></li>
+					<li class="fragment">BEM<br>
+						<span class="text__small">How to name your classes (Generally) (block__element--modifier)</span></li>
+					<li class="fragment">OOCSS<br>
+						<span class="text__small">Separate structure from skin (layout from colors / fonts)<br>
+							Reusable classes</span></li>
+				</ul>
+			</section>
+			<section>
+				<h2>SMACCS  Example</h2>
+
+				TODO: add image.
+			</section>
+			<section>
+				<h2>BEM Example</h2>
+				<pre><code>.nav {}
+.nav__list {}
+.nav__list__item {}
+.nav__link {}
+.nav__link--active {}</code></pre>
+			</section>
+
+			<section>
+				<h2>OOCSS Example</h2>
+				<pre><code>.button {  width: 200px;  height: 50px;}
+.box {  width: 400px;  overflow: hidden;}
+.widget {  width: 500px;  min-height: 200px;  overflow: auto;}
+.skin {  border: solid 1px #ccc;  background: green; }</code></pre>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h2>Pattern Lab and Atomic Design</h2>
+				<p class="fragment">Pattern Lab is a an ‘application’ that creates a very nifty style guide</p>
+				<p class="fragment">It is based on Atomic Design principles</p>
+			</section>
+			<section>
+				<h2>Atomic Design Principles</h2>
+				TODO: add image
+			</section>
+		</section>
+
+		<section>
+			<h2>JS and decoupled Drupal</h2>
+			<p class="fragment">These live outside of a theme - they have their own file structures.</p>
 			<ul>
-				<li>Name things well - so you can find them later</li>
-				<li>Do you really need a view for this?</li>
-				<li>Performance</li>
+				<li class="fragment">ReactJS</li>
+				<li class="fragment">AngularJS</li>
+				<li class="fragment">EmberJS</li>
+				<li class="fragment">VueJS</li>
+				<li class="fragment">More and more and more...</li>
 			</ul>
 		</section>
 
 		<section>
-			<h2>Naming Matters</h2>
+			<h3>“ It really doesn’t matter which structure, just tell me in the readme.md and stick with it (so I can find things).”</h3>
+			<h4>- Me (K2), Pragmatic frontend developer</h4>
+		</section>
+
+		<section>
+			<h3>Other things to make life easier</h3>
 			<ul>
-				<li>Naming a ton of views</li>
-				<li class="fragment">Entity > Descriptor > Modifier</li>
-				<li class="fragment">Biggest to smallest</li>
-				<li class="fragment">Add Tags</li>
-				<li class="fragment">Either all in one, or one for all</li>
+				<li>Slack - drupaltwig</li>
+				<li>X-Code for iphone simulator</li>
+				<li>Browser plugins (livereload )</li>
+				<li>Photoshop / Illustrator</li>
+				<li>Ticketing systems</li>
+				<ul>
+					<li>Jira</li>
+					<li>Zoho</li>
+				</ul>
+				<li>Bookmarks</li>
 			</ul>
 		</section>
 
 		<section>
-			<h2>So long and thanks for all the fish!</h2>
-			<p>Questions? <a href="">Answers@hook42.com</a></p>
+			<section class="text__small">
+				<h2>Join Us for Contribution Sprints</h2>
+				<p class="text__bold">#drupalsprints</p>
+				<p>Friday, April 28, 2017</p>
+				<ul class="ul__centered">
+					<li class="text__bold">First-Time Sprinter Workshop</li>
+					<li>9:00am-12:00pm</li>
+					<li>Room: 307-308</li>
+				</ul>
+				<ul class="ul__centered">
+					<li class="text__bold">Mentored Core Sprint</li>
+					<li>9:00am-12:00pm</li>
+					<li>Room: 301-303</li>
+				</ul>
+				<ul class="ul__centered">
+					<li class="text__bold">General Sprints</li>
+					<li>9:00am-6:00pm</li>
+					<li>Room: 309-310</li>
+				</ul>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>THANK YOU! <br>WHAT DID YOU THINK?</h2>
+			</section>
+			<section>
+				<p>Locate this session at the DrupalCon Baltimore website:</p>
+				<a href="https://events.drupal.org/baltimore2017/sessions/setting-front-end-development-environment-drupal-8">https://events.drupal.org/baltimore2017/sessions<br>/setting-front-end-development-environment-drupal-8</a>
+			</section>
+			<section>
+				<p>Take the survey!</p>
+				<a href="https://www.surveymonkey.com/r/drupalconbaltimore">https://www.surveymonkey.com/r/drupalconbaltimore</a>
+			</section>
+		</section>
+
+		<!-- <section>
+			<h3>Resources</h3>
+			<p>Install Drush
+				http://docs.drush.org/en/master/install/
+				Install Multiple versions of Drush
+				https://www.lullabot.com/articles/switching-drush-versions
+				http://loopduplicate.com/content/using-multiple-versions-of-drush
+				Lint settings for Gulp
+				https://www.drupal.org/docs/develop/standards/javascript/eslint-settings
+				ReactJS Directory Structure
+				http://marmelab.com/blog/2015/12/17/react-directory-structure.html
+				AngularJS Directory Structure
+				https://scotch.io/tutorials/angularjs-best-practices-directory-structure
+				CSS Architecture for Drupal 8
+				https://www.drupal.org/node/1887918
+				CSS File Organization for Drupal 8
+				https://www.drupal.org/node/1887922
+				Resources
+				MAMP / WAMP / php.ini
+				https://www.drupal.org/docs/develop/local-server-setup/mac-os-development-environment/howto-create-a-local-environment
+				https://www.drupal.org/docs/7/managing-site-performance/tuning-phpini-for-drupal
+				MAMP Pro - file > edit template
+				Bash Profiles
+
+				http://superuser.com/questions/789448/choosing-between-bashrc-profile-bash-profile-etc
+				Install Drupal Locally
+
+				https://www.drupal.org/docs/develop/local-server-setup
+
+				Installation profiles if you’re interesting in automating site installs:
+				https://www.drupal.org/node/2210443
+
+				Drupal settings.php
+
+				https://www.drupal.org/docs/7/installing-drupal-7/step-3-create-settingsphp-and-the-files-directory
+
+				https://www.drupal.org/docs/7/managing-site-performance-and-scalability/changing-php-memory-limits
+
+				Twig Debug
+
+				https://www.lullabot.com/articles/drupal-8-theming-fundamentals-part-2
+
+				Hosting
+
+				https://help.github.com/articles/generating-an-ssh-key/
+			</p>
+		</section>-->
+
+
+		<section>
+
+			<h3>So long and thanks for all the fish!</h3>
+			<h4>Have more questions?</h4>
+			<h5>Email us at:</h5>
+			<a href="mailto:answers@hook42.com">answers@hook42.com</a>
+
 		</section>
 
 	</div>
 
 </div>
-
-<script>
-    var vid = document.querySelector("video");
-
-    function setPlaySpeed() {
-        vid.playbackRate = 5;
-    }
-    function setPlaySpeedSlow() {
-        vid.playbackRate = 1;
-    }
-</script>
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script>

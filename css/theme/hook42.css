@@ -61,7 +61,7 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.25em; }
+  font-size: 2em; }
 
 .reveal h2 {
   font-size: 1.75em; }
@@ -332,3 +332,17 @@ body {
 
 .reveal .image__small {
   max-width: 500px; }
+
+.reveal .seventy-percent {
+  max-width: 70%;
+  margin: 1em auto;
+  }
+
+.reveal pre code {
+  padding: 1em;
+}
+
+.reveal ul {
+  display: block;
+  margin-bottom: 1em;
+}
